@@ -1,0 +1,79 @@
+{
+  "type" : "record",
+  "name" : "NGSPatient",
+  "namespace" : "SDGS_BioInf_Models",
+  "fields" : [ {
+    "name" : "id",
+    "type" : "string"
+  }, {
+    "name" : "sex",
+    "type" : [ "null", {
+      "type" : "enum",
+      "name" : "Sex",
+      "symbols" : [ "M", "F", "U" ]
+    } ]
+  }, {
+    "name" : "specimens",
+    "type" : {
+      "type" : "array",
+      "items" : {
+        "type" : "record",
+        "name" : "Specimen",
+        "fields" : [ {
+          "name" : "id",
+          "type" : "string"
+        }, {
+          "name" : "sequencingRuns",
+          "type" : {
+            "type" : "array",
+            "items" : {
+              "type" : "record",
+              "name" : "SequencingRun",
+              "fields" : [ {
+                "name" : "worklistNumber",
+                "type" : [ "null", "string" ]
+              }, {
+                "name" : "runNumber",
+                "type" : "string"
+              }, {
+                "name" : "runName",
+                "type" : "string"
+              }, {
+                "name" : "runPosition",
+                "type" : "string"
+              }, {
+                "name" : "captureMethod",
+                "type" : "string"
+              }, {
+                "name" : "analyses",
+                "type" : {
+                  "type" : "array",
+                  "items" : {
+                    "type" : "record",
+                    "name" : "Analysis",
+                    "fields" : [ {
+                      "name" : "bed",
+                      "type" : "string"
+                    } ]
+                  }
+                }
+              } ]
+            }
+          }
+        } ]
+      }
+    }
+  }, {
+    "name" : "versionControl",
+    "type" : {
+      "type" : "record",
+      "name" : "VersionControl",
+      "fields" : [ {
+        "name" : "GitVersionControl",
+        "type" : "string",
+        "doc" : "This is the version for the entire set of data models as referred to the Git release tag",
+        "default" : "0.0.1"
+      } ]
+    }
+  } ]
+}

@@ -1,0 +1,9 @@
+{
+  "type" : "record",
+  "name" : "Analysis",
+  "namespace" : "SDGS_BioInf_Models",
+  "fields" : [ {
+    "name" : "bed",
+    "type" : "string"
+  } ]
+}

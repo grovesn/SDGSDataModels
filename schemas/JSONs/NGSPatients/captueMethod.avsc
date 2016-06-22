@@ -1,0 +1,6 @@
+{
+  "type" : "enum",
+  "name" : "captueMethod",
+  "namespace" : "SDGS_BioInf_Models",
+  "symbols" : [ "SureSelect", "TruSight" ]
+}

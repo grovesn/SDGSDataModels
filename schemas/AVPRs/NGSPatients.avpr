@@ -1,0 +1,87 @@
+{
+  "protocol" : "NGSPatients",
+  "namespace" : "SDGS_BioInf_Models",
+  "types" : [ {
+    "type" : "record",
+    "name" : "VersionControl",
+    "fields" : [ {
+      "name" : "GitVersionControl",
+      "type" : "string",
+      "doc" : "This is the version for the entire set of data models as referred to the Git release tag",
+      "default" : "0.0.1"
+    } ]
+  }, {
+    "type" : "enum",
+    "name" : "Sex",
+    "symbols" : [ "M", "F", "U" ]
+  }, {
+    "type" : "enum",
+    "name" : "captueMethod",
+    "symbols" : [ "SureSelect", "TruSight" ]
+  }, {
+    "type" : "record",
+    "name" : "Analysis",
+    "fields" : [ {
+      "name" : "bed",
+      "type" : "string"
+    } ]
+  }, {
+    "type" : "record",
+    "name" : "SequencingRun",
+    "fields" : [ {
+      "name" : "worklistNumber",
+      "type" : [ "null", "string" ]
+    }, {
+      "name" : "runNumber",
+      "type" : "string"
+    }, {
+      "name" : "runName",
+      "type" : "string"
+    }, {
+      "name" : "runPosition",
+      "type" : "string"
+    }, {
+      "name" : "captureMethod",
+      "type" : "string"
+    }, {
+      "name" : "analyses",
+      "type" : {
+        "type" : "array",
+        "items" : "Analysis"
+      }
+    } ]
+  }, {
+    "type" : "record",
+    "name" : "Specimen",
+    "fields" : [ {
+      "name" : "id",
+      "type" : "string"
+    }, {
+      "name" : "sequencingRuns",
+      "type" : {
+        "type" : "array",
+        "items" : "SequencingRun"
+      }
+    } ]
+  }, {
+    "type" : "record",
+    "name" : "NGSPatient",
+    "fields" : [ {
+      "name" : "id",
+      "type" : "string"
+    }, {
+      "name" : "sex",
+      "type" : [ "null", "Sex" ]
+    }, {
+      "name" : "specimens",
+      "type" : {
+        "type" : "array",
+        "items" : "Specimen"
+      }
+    }, {
+      "name" : "versionControl",
+      "type" : "VersionControl"
+    } ]
+  } ],
+  "messages" : { }
+}

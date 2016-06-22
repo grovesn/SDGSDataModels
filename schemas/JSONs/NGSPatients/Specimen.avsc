@@ -1,0 +1,47 @@
+{
+  "type" : "record",
+  "name" : "Specimen",
+  "namespace" : "SDGS_BioInf_Models",
+  "fields" : [ {
+    "name" : "id",
+    "type" : "string"
+  }, {
+    "name" : "sequencingRuns",
+    "type" : {
+      "type" : "array",
+      "items" : {
+        "type" : "record",
+        "name" : "SequencingRun",
+        "fields" : [ {
+          "name" : "worklistNumber",
+          "type" : [ "null", "string" ]
+        }, {
+          "name" : "runNumber",
+          "type" : "string"
+        }, {
+          "name" : "runName",
+          "type" : "string"
+        }, {
+          "name" : "runPosition",
+          "type" : "string"
+        }, {
+          "name" : "captureMethod",
+          "type" : "string"
+        }, {
+          "name" : "analyses",
+          "type" : {
+            "type" : "array",
+            "items" : {
+              "type" : "record",
+              "name" : "Analysis",
+              "fields" : [ {
+                "name" : "bed",
+                "type" : "string"
+              } ]
+            }
+          }
+        } ]
+      }
+    }
+  } ]
+}
