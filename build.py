@@ -2,7 +2,7 @@ import glob
 import json
 import os
 
-__author__ = 'antonior'
+__author__ = 'mparker'
 
 BASE_DIR = os.path.dirname(__file__)
 

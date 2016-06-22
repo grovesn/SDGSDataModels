@@ -1,0 +1,48 @@
+@namespace("SDGS_BioInf_Models")
+
+
+protocol NGSPatients {
+
+  import idl "VersionControl.avdl";
+
+  enum Sex {M,F,U}
+
+  enum captueMethod {SureSelect,TruSight}
+
+  record Analysis {
+
+    string bed;
+
+  }
+
+  record SequencingRun {
+
+    union {null, string} worklistNumber;
+    string runNumber;
+    string runName;
+    string runPosition;
+    string captureMethod;
+    array <Analysis> analyses;
+
+  }
+
+
+  record Specimen {
+
+    string id;
+    array <SequencingRun> sequencingRuns;
+
+  }
+
+
+
+  record NGSPatient {
+
+    string id;
+    union {null, Sex} sex;
+
+    array <Specimen> specimens;
+    VersionControl versionControl;
+  }
+
+}

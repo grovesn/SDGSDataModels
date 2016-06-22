@@ -14,6 +14,216 @@ import avro.schema
 version = '0.0.1'
 
 
+class Analysis(ProtocolElement):
+    """
+    No documentation
+    """
+    _schemaSource = """
+{"namespace": "SDGS_BioInf_Models", "type": "record", "name":
+"Analysis", "fields": [{"type": "string", "name": "bed"}]}
+"""
+    schema = avro.schema.parse(_schemaSource)
+    requiredFields = {
+        "bed",
+    }
+
+    @classmethod
+    def isEmbeddedType(cls, fieldName):
+        embeddedTypes = {}
+        return fieldName in embeddedTypes
+
+    @classmethod
+    def getEmbeddedType(cls, fieldName):
+        embeddedTypes = {}
+
+        return embeddedTypes[fieldName]
+
+    __slots__ = [
+        'bed'
+    ]
+
+    def __init__(self, **kwargs):
+        self.bed = kwargs.get(
+            'bed', 'None')
+
+
+class NGSPatient(ProtocolElement):
+    """
+    No documentation
+    """
+    _schemaSource = """
+{"namespace": "SDGS_BioInf_Models", "type": "record", "name":
+"NGSPatient", "fields": [{"type": "string", "name": "id"}, {"type":
+["null", {"symbols": ["M", "F", "U"], "type": "enum", "name": "Sex"}],
+"name": "sex"}, {"type": {"items": {"fields": [{"type": "string",
+"name": "id"}, {"type": {"items": {"fields": [{"type": ["null",
+"string"], "name": "worklistNumber"}, {"type": "string", "name":
+"runNumber"}, {"type": "string", "name": "runName"}, {"type":
+"string", "name": "runPosition"}, {"type": "string", "name":
+"captureMethod"}, {"type": {"items": {"fields": [{"type": "string",
+"name": "bed"}], "type": "record", "name": "Analysis"}, "type":
+"array"}, "name": "analyses"}], "type": "record", "name":
+"SequencingRun"}, "type": "array"}, "name": "sequencingRuns"}],
+"type": "record", "name": "Specimen"}, "type": "array"}, "name":
+"specimens"}, {"type": {"fields": [{"default": "0.0.1", "doc": "",
+"type": "string", "name": "GitVersionControl"}], "type": "record",
+"name": "VersionControl"}, "name": "versionControl"}]}
+"""
+    schema = avro.schema.parse(_schemaSource)
+    requiredFields = {
+        "id",
+        "sex",
+        "specimens",
+        "versionControl",
+    }
+
+    @classmethod
+    def isEmbeddedType(cls, fieldName):
+        embeddedTypes = {
+            'specimens': Specimen,
+            'versionControl': VersionControl,
+        }
+        return fieldName in embeddedTypes
+
+    @classmethod
+    def getEmbeddedType(cls, fieldName):
+        embeddedTypes = {
+            'specimens': Specimen,
+            'versionControl': VersionControl,
+        }
+
+        return embeddedTypes[fieldName]
+
+    __slots__ = [
+        'id', 'sex', 'specimens', 'versionControl'
+    ]
+
+    def __init__(self, **kwargs):
+        self.id = kwargs.get(
+            'id', 'None')
+        self.sex = kwargs.get(
+            'sex', None)
+        self.specimens = kwargs.get(
+            'specimens', None)
+        self.versionControl = kwargs.get(
+            'versionControl', None)
+
+
+class SequencingRun(ProtocolElement):
+    """
+    No documentation
+    """
+    _schemaSource = """
+{"namespace": "SDGS_BioInf_Models", "type": "record", "name":
+"SequencingRun", "fields": [{"type": ["null", "string"], "name":
+"worklistNumber"}, {"type": "string", "name": "runNumber"}, {"type":
+"string", "name": "runName"}, {"type": "string", "name":
+"runPosition"}, {"type": "string", "name": "captureMethod"}, {"type":
+{"items": {"fields": [{"type": "string", "name": "bed"}], "type":
+"record", "name": "Analysis"}, "type": "array"}, "name": "analyses"}]}
+"""
+    schema = avro.schema.parse(_schemaSource)
+    requiredFields = {
+        "analyses",
+        "captureMethod",
+        "runName",
+        "runNumber",
+        "runPosition",
+        "worklistNumber",
+    }
+
+    @classmethod
+    def isEmbeddedType(cls, fieldName):
+        embeddedTypes = {
+            'analyses': Analysis,
+        }
+        return fieldName in embeddedTypes
+
+    @classmethod
+    def getEmbeddedType(cls, fieldName):
+        embeddedTypes = {
+            'analyses': Analysis,
+        }
+
+        return embeddedTypes[fieldName]
+
+    __slots__ = [
+        'analyses', 'captureMethod', 'runName', 'runNumber',
+        'runPosition', 'worklistNumber'
+    ]
+
+    def __init__(self, **kwargs):
+        self.analyses = kwargs.get(
+            'analyses', None)
+        self.captureMethod = kwargs.get(
+            'captureMethod', 'None')
+        self.runName = kwargs.get(
+            'runName', 'None')
+        self.runNumber = kwargs.get(
+            'runNumber', 'None')
+        self.runPosition = kwargs.get(
+            'runPosition', 'None')
+        self.worklistNumber = kwargs.get(
+            'worklistNumber', None)
+
+
+class Sex(object):
+    """
+    No documentation
+    """
+    M = "M"
+    F = "F"
+    U = "U"
+
+
+class Specimen(ProtocolElement):
+    """
+    No documentation
+    """
+    _schemaSource = """
+{"namespace": "SDGS_BioInf_Models", "type": "record", "name":
+"Specimen", "fields": [{"type": "string", "name": "id"}, {"type":
+{"items": {"fields": [{"type": ["null", "string"], "name":
+"worklistNumber"}, {"type": "string", "name": "runNumber"}, {"type":
+"string", "name": "runName"}, {"type": "string", "name":
+"runPosition"}, {"type": "string", "name": "captureMethod"}, {"type":
+{"items": {"fields": [{"type": "string", "name": "bed"}], "type":
+"record", "name": "Analysis"}, "type": "array"}, "name": "analyses"}],
+"type": "record", "name": "SequencingRun"}, "type": "array"}, "name":
+"sequencingRuns"}]}
+"""
+    schema = avro.schema.parse(_schemaSource)
+    requiredFields = {
+        "id",
+        "sequencingRuns",
+    }
+
+    @classmethod
+    def isEmbeddedType(cls, fieldName):
+        embeddedTypes = {
+            'sequencingRuns': SequencingRun,
+        }
+        return fieldName in embeddedTypes
+
+    @classmethod
+    def getEmbeddedType(cls, fieldName):
+        embeddedTypes = {
+            'sequencingRuns': SequencingRun,
+        }
+
+        return embeddedTypes[fieldName]
+
+    __slots__ = [
+        'id', 'sequencingRuns'
+    ]
+
+    def __init__(self, **kwargs):
+        self.id = kwargs.get(
+            'id', 'None')
+        self.sequencingRuns = kwargs.get(
+            'sequencingRuns', None)
+
+
 class VersionControl(ProtocolElement):
     """
     No documentation
@@ -44,3 +254,11 @@ class VersionControl(ProtocolElement):
     def __init__(self, **kwargs):
         self.GitVersionControl = kwargs.get(
             'GitVersionControl', '0.0.1')
+
+
+class captueMethod(object):
+    """
+    No documentation
+    """
+    SureSelect = "SureSelect"
+    TruSight = "TruSight"
